@@ -9516,76 +9516,76 @@ var __webpack_exports__ = {};
   $(document).ready(function () {
     setTimeout(function () {
       // Turn on extension
-      unsafeWindow.autoPlayerEnabled = true;
-      unsafeWindow.autoPlayerDelay = 200; // Set autoClicker to true
+      autoPlayerEnabled = true;
+      autoPlayerDelay = 200; // Set autoClicker to true
 
-      unsafeWindow.autoClickerEnabled = true;
-      unsafeWindow.autoClickerDelay = 10; // Set auto click shimmers to true
+      autoClickerEnabled = true;
+      autoClickerDelay = 10; // Set auto click shimmers to true
 
-      unsafeWindow.autoClickShimmers = true; // Set global auto-buy to true
+      autoClickShimmers = true; // Set global auto-buy to true
 
-      unsafeWindow.autoBuy = true; // Set specific auto-buy to true    
+      autoBuy = true; // Set specific auto-buy to true    
 
-      unsafeWindow.autoBuyUpgrades = true;
-      unsafeWindow.autoBuyProducts = true; // Set stop on buff to false
+      autoBuyUpgrades = true;
+      autoBuyProducts = true; // Set stop on buff to false
 
-      unsafeWindow.stopOnBuff = false;
+      stopOnBuff = false;
       var buffActive = false; // Set console notifications to true
 
-      unsafeWindow.notifications = true; //set Kill Wrinklers to true
+      notifications = true; //set Kill Wrinklers to true
 
-      unsafeWindow.autoKillWrinklers = true; // Trigger help function from console
+      autoKillWrinklers = true; // Trigger help function from console
 
-      unsafeWindow.help = help; // Show help menu in console
+      help = help; // Show help menu in console
 
       function help() {
         console.log("[=== Auto Player for Cookie Monster ===]\n\nYou can use several commands which are listed below:\n\nautoPlayerEnabled = true/false [turn on/off the auto clicker extension]\nautoPlayerDelay = int [delay in milliseconds between purchases]\nautoClickerEnabled = true/false [turn on/off the auto clicker]\nautoClickerDelay = int [delay in milliseconds between clicks]\nautoClickShimmers = true/false [turn on/off the auto clicker for shimmers]\nautoBuy = true/false [turn on/off auto buy of upgrades & products]\nautoBuyUpgrades = true/false [turn on/off auto buy of upgrades]\nautoBuyProducts = true/false [turn on/off auto buy of products]\nautoKillWrinklers = true/false [turn on/off auto kill when full on wrinklers]\nstopOnBuff = true/false [temporarily turn off auto-buy when buff is active. defaults to false]\nnotifications = true/false [turn on/off console notifications]\n\nYou can view your current settings with the settings() command and you can always call for help again with the help() command.");
       } // Trigger settings function from console
 
 
-      unsafeWindow.settings = settings; // Show settings in console
+      settings = settings; // Show settings in console
 
       function settings() {
-        console.log("[=== Auto Player Settings ===]\n\nYou are currently using the following settings:\n\nautoPlayerEnabled = " + unsafeWindow.autoPlayerEnabled + "\nautoPlayerDelay = " + unsafeWindow.autoPlayerDelay + "\nautoClickerEnabled = " + unsafeWindow.autoClickerEnabled + "\nautoClickerDelay = " + unsafeWindow.autoClickerDelay + "\nautoClickShimmers = " + unsafeWindow.autoClickShimmers + "\nautoBuy = " + unsafeWindow.autoBuy + "\nautoBuyUpgrades = " + unsafeWindow.autoBuyUpgrades + "\nautoBuyProducts = " + unsafeWindow.autoBuyProducts + "\nautoKillWrinklers = " + unsafeWindow.autoKillWrinklers + "\nstopOnBuff = " + unsafeWindow.stopOnBuff + "\nnotifications = " + unsafeWindow.notifications + "\n\nYou can view your current settings with the settings() command and you can always call for help again with the help() command.");
+        console.log("[=== Auto Player Settings ===]\n\nYou are currently using the following settings:\n\nautoPlayerEnabled = " + autoPlayerEnabled + "\nautoPlayerDelay = " + autoPlayerDelay + "\nautoClickerEnabled = " + autoClickerEnabled + "\nautoClickerDelay = " + autoClickerDelay + "\nautoClickShimmers = " + autoClickShimmers + "\nautoBuy = " + autoBuy + "\nautoBuyUpgrades = " + autoBuyUpgrades + "\nautoBuyProducts = " + autoBuyProducts + "\nautoKillWrinklers = " + autoKillWrinklers + "\nstopOnBuff = " + stopOnBuff + "\nnotifications = " + notifications + "\n\nYou can view your current settings with the settings() command and you can always call for help again with the help() command.");
       }
 
       help();
 
       function clicker() {
-        if (unsafeWindow.autoClickerEnabled && unsafeWindow.autoPlayerEnabled && !Game.OnAscend) {
+        if (autoClickerEnabled && autoPlayerEnabled && !Game.OnAscend) {
           Game.ClickCookie();
         }
 
-        setTimeout(clicker, unsafeWindow.autoClickerDelay);
+        setTimeout(clicker, autoClickerDelay);
       }
 
       function loop() {
-        if (unsafeWindow.autoPlayerEnabled && !Game.OnAscend) {
-          if (unsafeWindow.autoClickShimmers) {
+        if (autoPlayerEnabled && !Game.OnAscend) {
+          if (autoClickShimmers) {
             clickShimmers();
           } // Check if buff is finished and resume auto-buy
 
 
           buffActive = checkBuff(buffActive);
 
-          if (unsafeWindow.autoBuy && !buffActive) {
+          if (autoBuy && !buffActive) {
             // Buy upgrades
-            if (unsafeWindow.autoBuyUpgrades) {
+            if (autoBuyUpgrades) {
               buyUpgrade();
             } // Buy Products
 
 
-            if (unsafeWindow.autoBuyProducts) {
+            if (autoBuyProducts) {
               buyProduct();
             }
           }
 
-          if (unsafeWindow.autoKillWrinklers) {
+          if (autoKillWrinklers) {
             killWrinklers();
           }
         }
 
-        setTimeout(loop, unsafeWindow.autoPlayerDelay);
+        setTimeout(loop, autoPlayerDelay);
       }
 
       clicker();
@@ -9600,7 +9600,7 @@ function clickShimmers() {
     //        {
     shimmer.pop();
 
-    if (unsafeWindow.notifications) {
+    if (notifications) {
       console.log("Shimmer clicked!");
     } //        }
 
@@ -9608,13 +9608,13 @@ function clickShimmers() {
 }
 
 function checkBuff(buffActive) {
-  if (unsafeWindow.stopOnBuff) {
+  if (stopOnBuff) {
     var buffCrate = $("#buffs").find(".crate");
 
     if (buffCrate.length > 0) {
       buffActive = true;
 
-      if (unsafeWindow.notifications) {
+      if (notifications) {
         console.log("Auto-buy temporarily disabled during buff!");
       }
     }
@@ -9626,7 +9626,7 @@ function checkBuff(buffActive) {
     if (_buffCrate.length == 0) {
       buffActive = false;
 
-      if (unsafeWindow.notifications) {
+      if (notifications) {
         console.log("Auto-buy enabled again!");
       }
     }
@@ -9644,7 +9644,7 @@ function buyUpgrade() {
       upgradeColors[index] = upgrades.children().eq(index).attr("class").slice(6);
     });
   } catch (e) {
-    if (unsafeWindow.notifications) {
+    if (notifications) {
       console.log("Minor Error, if you know how to fix let me know. Line 144 of Auto Player for CM:", e.name, e.message);
     }
   }
@@ -9659,7 +9659,7 @@ function buyUpgrade() {
     if (upgradeColors[i] == color && $(upgrades[i]).hasClass("enabled")) {
       $(upgrades[i]).click();
 
-      if (unsafeWindow.notifications) {
+      if (notifications) {
         console.log(color + " Upgrade bought!");
       }
     }
@@ -9701,7 +9701,7 @@ function buyProduct() {
   if (cheapest != "") {
     cheapest.click();
 
-    if (unsafeWindow.notifications) {
+    if (notifications) {
       var productTitle = cheapest.find(".title");
 
       if (productTitle.find("span").length > 0) {
