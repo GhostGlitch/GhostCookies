@@ -10922,20 +10922,8 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 /* provided dependency */ var $ = __webpack_require__(755);
-// ==UserScript==
-// @name            Auto Player for Cookie Monster
-// @namespace       http://tampermonkey.net/
-// @version         0.8.2
-// @description     Auto click cookie, golden cookies, and wrinklers. Autobuy based on Cookie Monster Rating. fully customizable with console functions.
-// @author          Ghost Glitch
-// @license         GPL-3.0-or-later
-// @originallicense none
-// @original-script https://greasyfork.org/en/scripts/421709-auto-clicker-for-cookie-clicker
-// @original-author Wesley Vermeulen (https://weave-development.com)
-// @match           https://orteil.dashnet.org/cookieclicker/
-// @grant           unsafeWindow
-// @require         https://code.jquery.com/jquery-latest.js
-// ==/UserScript==
+// based on script: https://greasyfork.org/en/scripts/421709-auto-clicker-for-cookie-clicker
+// original author: Wesley Vermeulen (https://weave-development.com)
 
 
 (function () {
@@ -10970,7 +10958,7 @@ var __webpack_exports__ = {};
             window.autoKillWrinklers = true;
 
             // Trigger help function from console
-            help = help;
+            window.help = help;
 
             // Show help menu in console
             function help() {
@@ -10978,7 +10966,7 @@ var __webpack_exports__ = {};
             }
 
             // Trigger settings function from console
-            settings = settings;
+            window.settings = settings;
 
             // Show settings in console
             function settings() {

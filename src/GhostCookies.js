@@ -34,7 +34,7 @@
             window.autoKillWrinklers = true;
 
             // Trigger help function from console
-            help = help;
+            window.help = help;
 
             // Show help menu in console
             function help() {
@@ -42,7 +42,7 @@
             }
 
             // Trigger settings function from console
-            settings = settings;
+            window.settings = settings;
 
             // Show settings in console
             function settings() {
