@@ -13,7 +13,6 @@
 // @require         https://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 'use strict';
-import {$,jQuery} from 'jquery';
 (function () {
     $(document).ready(function () {
         setTimeout(function () {

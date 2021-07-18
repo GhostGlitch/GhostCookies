@@ -1,15 +1,23 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-
+var webpack = require('webpack');
 const path = require("path");
-
+new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+});
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
   entry: "./src/GhostCookies.js",
+  optimization: {
+    minimize: false,
+  },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    filename: 'GhostCookies.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
+    
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
