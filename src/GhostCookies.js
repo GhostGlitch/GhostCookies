@@ -13,36 +13,37 @@
 // @require         https://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 'use strict';
+
 (function () {
     $(document).ready(function () {
         setTimeout(function () {
             // Turn on extension
-            autoPlayerEnabled = true;
-            autoPlayerDelay = 200
-
+            window.autoPlayerEnabled = true;
+            window.autoPlayerDelay = 200
+        
             // Set autoClicker to true
-            autoClickerEnabled = true;
-            autoClickerDelay = 10;
-
+            window.autoClickerEnabled = true;
+            window.autoClickerDelay = 10;
+        
             // Set auto click shimmers to true
-            autoClickShimmers = true;
-
+            window.autoClickShimmers = true;
+        
             // Set global auto-buy to true
-            autoBuy = true;
-
+            window.autoBuy = true;
+        
             // Set specific auto-buy to true    
-            autoBuyUpgrades = true;
-            autoBuyProducts = true;
-
+            window.autoBuyUpgrades = true;
+            window.autoBuyProducts = true;
+        
             // Set stop on buff to false
-            stopOnBuff = false;
+            window.stopOnBuff = false;
             let buffActive = false;
-
+        
             // Set console notifications to true
-            notifications = true;
-
+            window.notifications = true;
+        
             //set Kill Wrinklers to true
-            autoKillWrinklers = true
+            window.autoKillWrinklers = true;
 
             // Trigger help function from console
             help = help;
@@ -63,34 +64,34 @@
             help();
 
             function clicker() {
-                if (autoClickerEnabled && autoPlayerEnabled && !Game.OnAscend) {
+                if (window.autoClickerEnabled && window.autoPlayerEnabled && !Game.OnAscend) {
                     Game.ClickCookie();
                 }
-                setTimeout(clicker, autoClickerDelay);
+                setTimeout(clicker, window.autoClickerDelay);
             }
 
             function loop() {
-                if (autoPlayerEnabled && !Game.OnAscend) {
-                    if (autoClickShimmers) {
+                if (window.autoPlayerEnabled && !Game.OnAscend) {
+                    if (window.autoClickShimmers) {
                         clickShimmers();
                     }
                     // Check if buff is finished and resume auto-buy
                     buffActive = checkBuff(buffActive);
-                    if (autoBuy && !buffActive) {
+                    if (window.autoBuy && !buffActive) {
                         // Buy upgrades
-                        if (autoBuyUpgrades) {
+                        if (window.autoBuyUpgrades) {
                             buyUpgrade();
                         }
                         // Buy Products
-                        if (autoBuyProducts) {
+                        if (window.autoBuyProducts) {
                             buyProduct();
                         }
                     }
-                    if (autoKillWrinklers) {
+                    if (window.autoKillWrinklers) {
                         killWrinklers();
                     }
                 }
-                setTimeout(loop, autoPlayerDelay);
+                setTimeout(loop, window.autoPlayerDelay);
             }
 
             clicker()
@@ -107,35 +108,35 @@ function clickShimmers() {
         //        if(shimmer.type == "golden")
         //        {
         shimmer.pop()
-        if (notifications) {
+        if (window.notifications) {
             console.log("Shimmer clicked!");
         }
         //        }
     })
 }
 
-function checkBuff(buffActive) {
-    if (stopOnBuff) {
+function checkBuff(active) {
+    if (window.stopOnBuff) {
         let buffCrate = $("#buffs").find(".crate");
         if (buffCrate.length > 0) {
-            buffActive = true;
+            active = true;
 
-            if (notifications) {
+            if (window.notifications) {
                 console.log("Auto-buy temporarily disabled during buff!");
             }
         }
     }
-    if (buffActive) {
+    if (active) {
         let buffCrate = $("#buffs").find(".crate");
         if (buffCrate.length == 0) {
-            buffActive = false;
+            active = false;
 
-            if (notifications) {
+            if (window.notifications) {
                 console.log("Auto-buy enabled again!");
             }
         }
     }
-    return buffActive
+    return active
 }
 
 function buyUpgrade() {
@@ -148,7 +149,7 @@ function buyUpgrade() {
             upgradeColors[index] = upgrades.children().eq(index).attr("class").slice(6);
         });
     } catch (e) {
-        if (notifications) {
+        if (window.notifications) {
             console.log("Minor Error, if you know how to fix let me know. Line 144 of Auto Player for CM:", e.name, e.message);
         }
     }
@@ -162,7 +163,7 @@ function buyUpgrade() {
     function checkColorU(i, color) {
         if (upgradeColors[i] == color && $(upgrades[i]).hasClass("enabled")) {
             $(upgrades[i]).click();
-            if (notifications) {
+            if (window.notifications) {
                 console.log(color + " Upgrade bought!");
             }
         }
@@ -203,7 +204,7 @@ function buyProduct() {
     // After a buff or when your window was inactive may buys the best product when using short numbers. 14 trillion is in that case less than 400 billion (14 < 400).
     if (cheapest != "") {
         cheapest.click();
-        if (notifications) {
+        if (window.notifications) {
             let productTitle = cheapest.find(".title");
             if (productTitle.find("span").length > 0) {
                 console.log(productTitle.find("span").html() + " nr." + cheapest.find(".title.owned").html() + " bought!");
