@@ -1,11 +1,14 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 var webpack = require('webpack');
 const path = require("path");
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV == "production";
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 const config = {
   entry: {
     "GhostCookies": "./src/GhostCookies.js",
+  },
+  optimization: {
+    minimize: !!env.production,
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -16,9 +19,7 @@ const config = {
       $: require.resolve('jquery'),
       jQuery: require.resolve('jquery')
     }),
-    new UnminifiedWebpackPlugin({
-      postfix: 'unmin',//specify "nomin" postfix
-    }),
+    new UnminifiedWebpackPlugin
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
