@@ -1,5 +1,4 @@
-// based on script: https://greasyfork.org/en/scripts/421709-auto-clicker-for-cookie-clicker
-// original author: Wesley Vermeulen (https://weave-development.com)
+// based on script: https://greasyfork.org/en/scripts/421709-auto-clicker-for-cookie-clicker by Wesley Vermeulen (https://weave-development.com)
 'use strict';
 
 (function () {
@@ -8,28 +7,28 @@
             // Turn on extension
             window.autoPlayerEnabled = true;
             window.autoPlayerDelay = 200
-        
+
             // Set autoClicker to true
             window.autoClickerEnabled = true;
             window.autoClickerDelay = 10;
-        
+
             // Set auto click shimmers to true
             window.autoClickShimmers = true;
-        
+
             // Set global auto-buy to true
             window.autoBuy = true;
-        
+
             // Set specific auto-buy to true    
             window.autoBuyUpgrades = true;
             window.autoBuyProducts = true;
-        
+
             // Set stop on buff to false
             window.stopOnBuff = false;
             let buffActive = false;
-        
+
             // Set console notifications to true
             window.notifications = true;
-        
+
             //set Kill Wrinklers to true
             window.autoKillWrinklers = true;
 
@@ -178,8 +177,8 @@ function buyProduct() {
         else if (amount == 10) Game.storeBulkButton(3);
         else if (amount == 100) Game.storeBulkButton(4);
 
-        monsterKeys.forEach(function (element, index) {
-            if (CookieMonsterData[("Objects" + amount)][monsterKeys[index]].color == "Green") {
+        monsterKeys.forEach(function (_element, index) {
+            if (CookieMonsterData[("Objects" + amount)][monsterKeys[index]].colour == "Green") {
                 greenFound = true;
                 if ($(products[index]).hasClass("enabled")) {
                     cheapest = $(products[index]);
